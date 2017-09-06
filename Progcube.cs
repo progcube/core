@@ -8,7 +8,9 @@ namespace Progcube.Core
     /// </summary>
     public static class Progcube
     {
+        /// <summary>
         /// Call this method in your application's Startup.ConfigureServices().
+        /// </summary>
         public static void Bind(IServiceCollection services)
         {
             // TODO: bind mediator here
