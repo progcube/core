@@ -10,17 +10,17 @@ namespace Progcube.Core
     /// <summary>
     /// Represents a static entry point to bind the Progcube framework to your application.
     /// </summary>
-    public static class Progcube
+    public static class ProgcubeFramework
     {
         /// <summary>
         /// Call this method in your application's Startup.ConfigureServices().
         /// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
         /// <param name="typesToScan">A list of types to scan their assemblies for CQRS handlers.</param>
         /// </summary>
-        public static void Bind(IServiceCollection services, List<Type> typesToScan)
+        public static void Bind(IServiceCollection services, Type[] typesToScan)
         {
             // Register MediatR
-            services.AddMediatR(typeof(Progcube));
+            services.AddMediatR(typeof(ProgcubeFramework));
             services.AddTransient<IMediator>(x => new Mediator(x.GetService<SingleInstanceFactory>(), x.GetService<MultiInstanceFactory>()));
             services.AddTransient<SingleInstanceFactory>(x => t => x.GetRequiredService(t));
             services.AddTransient<MultiInstanceFactory>(x => t => x.GetServices(t));
