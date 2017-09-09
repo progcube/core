@@ -22,7 +22,7 @@ namespace Progcube.Core
             // Register MediatR
             services.AddMediatR(typeof(ProgcubeFramework));
             services.AddTransient<IMediator>(x => new Mediator(x.GetService<SingleInstanceFactory>(), x.GetService<MultiInstanceFactory>()));
-            services.AddTransient<SingleInstanceFactory>(x => t => x.GetRequiredService(t));
+            services.AddTransient<SingleInstanceFactory>(x => t => x.GetService(t));
             services.AddTransient<MultiInstanceFactory>(x => t => x.GetServices(t));
 
             // Bind types from consumer assemblies
