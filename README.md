@@ -27,7 +27,7 @@ public void ConfigureServices(IServiceCollection services)
 {
     // ...
 
-    ProgcubeFramework.Bind(services, new Type[]{
+    ProgcubeFramework.Bind(services, new []{
         typeof(YourApplication.Startup),        // Your own application
         typeof(Progcube.Subscriptions.Startup)  // List all Progcube dependencies you are using
     });
