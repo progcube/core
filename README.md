@@ -35,3 +35,7 @@ public void ConfigureServices(IServiceCollection services)
     // ...
 }
 ```
+
+## Considerations
+
+The Progcube framework enforces GUIDs for all entity IDs. This is a design decision and we offer no way to override the ID type. Please consider this when evaluating using the framework.
