@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Progcube.Core.Models.Entities;
 
@@ -13,6 +15,12 @@ namespace Progcube.Core.Data
         {
             UpdateTimestamps();
             return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            UpdateTimestamps();
+            return base.SaveChangesAsync();
         }
 
         private void UpdateTimestamps()

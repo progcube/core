@@ -3,7 +3,7 @@ using System;
 namespace Progcube.Core.Models.Entities
 {
     /// <summary>
-    /// An entity that implements this class will automatically support soft deletion
+    /// An entity that inherits from class will automatically support soft deletion
     /// and have its timestamps updated upon creation and modification.
     /// <seealso cref="Progcube.Core.Data.BaseDbContext"/>
     /// </summary>
