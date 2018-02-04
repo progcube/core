@@ -76,7 +76,7 @@ namespace Progcube.Core.Data.Cloud
             if (tokenInfo.ExpirationDateTime <= DateTime.UtcNow)
             {
                 // Token expired, get new token
-
+                await GetTokenForBucket(path);
             }
 
             return $"{BaseUrl}/file/{bucket}/{path}/{fileName}?Authorization={tokenInfo.Token}";
