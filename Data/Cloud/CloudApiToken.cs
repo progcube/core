@@ -11,5 +11,13 @@ namespace Progcube.Core.Data.Cloud
         /// The time at which the token is no longer valid.
         /// </summary>
         public DateTime ExpirationDateTime { get; set; }
+
+        /// <summary>
+        /// Returns whether the token is expired.
+        /// </summary>
+        public bool IsExpired()
+        {
+            return ExpirationDateTime <= DateTime.UtcNow;
+        }
     }
 }

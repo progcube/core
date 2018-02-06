@@ -73,10 +73,13 @@ namespace Progcube.Core.Data.Cloud
                 throw new InvalidOperationException("Error when trying to get token from concurrent dictionary. Dictionary should contain key, but key was not found.");
             }
 
-            if (tokenInfo.ExpirationDateTime <= DateTime.UtcNow)
+            if (tokenInfo.IsExpired())
             {
                 // Token expired, get new token
                 await GetTokenForBucket(path);
+
+                // Get updated token
+                hasToken = _tokens.TryGetValue(path, out tokenInfo);
             }
 
             return $"{BaseUrl}/file/{bucket}/{path}/{fileName}?Authorization={tokenInfo.Token}";
@@ -86,7 +89,7 @@ namespace Progcube.Core.Data.Cloud
         {
             foreach (var entry in _tokens)
             {
-                if (entry.Value.ExpirationDateTime > DateTime.UtcNow)
+                if (!entry.Value.IsExpired())
                     continue;
 
                 CloudApiToken removedValue;
